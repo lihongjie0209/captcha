@@ -250,6 +250,10 @@ class ImageCaptcha:
         image = createImage('RGB', (self._width, self._height), background)
         draw = Draw(image)
 
+        # Handle empty string case
+        if not chars:
+            return image, []
+
         images: list[Image] = []
         char_indices: list[int] = []  # Track which character each image corresponds to
         char_index = 0

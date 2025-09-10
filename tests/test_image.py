@@ -108,3 +108,14 @@ def test_generate_with_bounding_boxes_stress():
             # Bounding box should not exceed image dimensions
             assert x + w <= captcha._width
             assert y + h <= captcha._height
+
+
+def test_generate_with_bounding_boxes_empty_string():
+    """Test with empty string."""
+    captcha = ImageCaptcha()
+    
+    image, bounding_boxes = captcha.generate_with_bounding_boxes("")
+    
+    # Should return empty list for empty string
+    assert len(bounding_boxes) == 0
+    assert image.size == (captcha._width, captcha._height)
